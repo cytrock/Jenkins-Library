@@ -1,0 +1,27 @@
+#!groovy
+@Library('CI Library@3.0‘)_
+
+env.a = '1'
+pipeline{
+  options{
+    timeout(time: 3, unit: 'HOURS")
+    timestamps() 
+    preserveStashes() 
+    }
+   agent{
+    kubernetes {
+      cloud "kubernetes' 
+      namespace 'f-jenkins' 
+      nodeSelector ‘linux_agent=true'
+      slaveConnectTineout 300 
+      yaml ’‘’spec:
+     containers: 
+     - name: "jnlp' 
+     image: dockhub:5000/jenkins-linux-apent: 3.0 
+     imagePul1Policy: IfNotPresent 
+     working0ir: /opt 
+     env: 
+     - name: "JENKINS_MEB_SOCKET" 
+      value: true 
+     volumeMounts: 
+     - mountPath:/home/jenkins/tools name: tools mountPath:/home/jenkins/workspace/tools name: toolslib mountPath: /root/.m2 name: maven resources: limits: cpu: '2* memory: "AGi• requests: cou: 19 • memory: "161• volumes: name: tools hostPath: path: /home/jenkins/tools Re: toolslib hostPath:
